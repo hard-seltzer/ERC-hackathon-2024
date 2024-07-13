@@ -6,7 +6,6 @@ from launch.actions import IncludeLaunchDescription, ExecuteProcess
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
-from ament_index_python.packages import get_package_share_directory
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
@@ -14,10 +13,10 @@ def generate_launch_description():
     # Paths
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
     pkg_turtlebot3_gazebo = get_package_share_directory('turtlebot3_gazebo')
-    pkg_hackathon_automation = get_package_share_directory('hackathon_automation')
+    pkg_hackathon_automation = get_package_share_directory('ERC-hackathon-2024')
 
     # World file
-    world = os.path.join(pkg_hackathon_automation, 'worlds', 'MAP.world')
+    world = os.path.join(pkg_hackathon_automation, 'hackathon_automation', 'worlds', 'MAP.world')
 
     # Launch Gazebo
     gzserver_cmd = IncludeLaunchDescription(
@@ -54,21 +53,21 @@ def generate_launch_description():
 
     # Launch custom nodes
     path_planner_node = Node(
-        package='hackathon_automation',
+        package='ERC-hackathon-2024',
         executable='path_planner.py',
         name='path_planner',
         output='screen'
     )
 
     controller_node = Node(
-        package='hackathon_automation',
+        package='ERC-hackathon-2024',
         executable='controller.py',
         name='tb3_controller',
         output='screen'
     )
 
     colour_detector_node = Node(
-        package='hackathon_automation',
+        package='ERC-hackathon-2024',
         executable='colour_detection.py',
         name='colour_detector',
         output='screen'

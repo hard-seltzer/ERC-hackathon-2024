@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(hackathon_automation)
+project(ERC-hackathon-2024)
 
 
 if(NOT CMAKE_CXX_STANDARD)
